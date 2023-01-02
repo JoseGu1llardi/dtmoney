@@ -84,13 +84,6 @@ export const GlobalStyle = createGlobalStyle`
         position: absolute;
         right: 1.5rem;
         top: 1.5rem;
-        border: 0;
-        background: transparent;
-        
-        transition: filter .2s;
-        
-        &:hover {
-            filter: brightness(.7);
-        }
+        border:
     }
 `;

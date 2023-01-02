@@ -5,7 +5,7 @@ import { api } from '../../services/api';
 export function TransactionTable() {
     useEffect(() => {
         api.get('transactions')
-            .then(res => console.log(res.data));
+            .then(data => console.log(data));
     }, []);
 
     return (
