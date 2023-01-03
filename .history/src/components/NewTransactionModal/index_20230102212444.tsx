@@ -1,7 +1,5 @@
 import { useState, FormEvent } from 'react';
 
-import { api } from '../../services/api';
-
 import Modal from 'react-modal';
 
 import incomeImg from '../../assets/income.svg';
@@ -19,21 +17,19 @@ interface NewTransactionModalProps {
 
 export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionModalProps) {
     const [title, setTitle] = useState('');
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(Number);
     const [category, setCategory] = useState('');
     const [type, setType] = useState('deposit');
 
     function handleCreateNewTransaction(e: FormEvent) {
         e.preventDefault();
 
-        const data = {
+        console.log({
             title,
             value,
             category,
             type
-        }
-
-        api.post('/transactions', data);
+        })
     }
 
     return (

@@ -8,7 +8,7 @@ import { App } from './App';
 
 createServer({
   models: {
-    transaction: Model,
+    transaction: Model
   },
 
   routes() {
