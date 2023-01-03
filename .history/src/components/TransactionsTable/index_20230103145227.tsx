@@ -16,7 +16,7 @@ export function TransactionTable() {
 
     useEffect(() => {
         api.get('transactions')
-            .then(res => setTransactions(res.data.transactions));
+            .then(res => setTransactions(res.data));
     }, []);
 
     console.log(transactions);
@@ -36,18 +36,11 @@ export function TransactionTable() {
                 <tbody>
                     {
                         transactions.map(transaction => (
-                            <tr key={transaction.id}>
+                            <tr>
                                 <td>{transaction.title}</td>
-                                <td className={transaction.type}>
-                                    {new Intl.NumberFormat('pt-BR', {
-                                        style: 'currency',
-                                        currency: 'BRL'
-                                    }).format(transaction.amount)}
-                                </td>
+                                <td className={transaction.type}>R$ {transaction.amount}</td>
                                 <td>{transaction.category}</td>
-                                <td>
-                                    {new Intl.DateTimeFormat('pt-BR').format(new Date(transaction.createdAt))}
-                                </td>
+                                <td>{transaction.createdAt}</td>
                             </tr>
                         ))
                     }

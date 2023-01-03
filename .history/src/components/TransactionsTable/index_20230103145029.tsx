@@ -12,11 +12,11 @@ interface Transaction {
 }
 
 export function TransactionTable() {
-    const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
         api.get('transactions')
-            .then(res => setTransactions(res.data.transactions));
+            .then(res => setTransactions(res.data));
     }, []);
 
     console.log(transactions);
@@ -36,18 +36,11 @@ export function TransactionTable() {
                 <tbody>
                     {
                         transactions.map(transaction => (
-                            <tr key={transaction.id}>
+                            <tr>
                                 <td>{transaction.title}</td>
-                                <td className={transaction.type}>
-                                    {new Intl.NumberFormat('pt-BR', {
-                                        style: 'currency',
-                                        currency: 'BRL'
-                                    }).format(transaction.amount)}
-                                </td>
-                                <td>{transaction.category}</td>
-                                <td>
-                                    {new Intl.DateTimeFormat('pt-BR').format(new Date(transaction.createdAt))}
-                                </td>
+                                <td className='deposit'>R$ 12,000,00</td>
+                                <td>Development</td>
+                                <td>20/10/2022</td>
                             </tr>
                         ))
                     }
