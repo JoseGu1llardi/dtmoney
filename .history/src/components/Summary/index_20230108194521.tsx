@@ -1,4 +1,6 @@
-import { useTransactions } from '../../hooks/useTransactions';
+import { useContext } from 'react';
+
+import { TransactionsContext } from '../../contexts/TransactionsContext';
 
 import { Container } from './styles';
 
@@ -7,19 +9,14 @@ import outcomeImg from '../../assets/outcome.svg';
 import totalImg from '../../assets/total.svg';
 
 export function Summary() {
-    const { transactions } = useTransactions();
+    const { transactions } = useContext(TransactionsContext);
 
     const summary = transactions.reduce((acc, transaction) => {
         if (transaction.type === 'deposit') {
-            acc.deposits += transaction.amount
-            acc.total += transaction.amount
+
         } else {
-            acc.withdraws += transaction.amount;
-            acc.total -= transaction.amount;
+
         }
-
-        return acc;
-
     }, {
         deposits: 0,
         withdraws: 0,
@@ -33,10 +30,7 @@ export function Summary() {
                     <p>Income</p>
                     <img src={incomeImg} alt="Logo income" />
                 </header>
-                <strong>{new Intl.NumberFormat('de-DE', {
-                    style: 'currency',
-                    currency: 'EUR',
-                }).format(summary.deposits)}</strong>
+                <strong>R$ 10000</strong>
             </div>
 
             <div>
@@ -44,10 +38,7 @@ export function Summary() {
                     <p>Outcome</p>
                     <img src={outcomeImg} alt="Logo outcome" />
                 </header>
-                <strong>-{new Intl.NumberFormat('de-DE', {
-                    style: 'currency',
-                    currency: 'EUR',
-                }).format(summary.withdraws)}</strong>
+                <strong>- R$ 500,00</strong>
             </div>
 
             <div className="highlight-background">
@@ -55,10 +46,7 @@ export function Summary() {
                     <p>Total</p>
                     <img src={totalImg} alt="Logo total" />
                 </header>
-                <strong>{new Intl.NumberFormat('de-DE', {
-                    style: 'currency',
-                    currency: 'EUR',
-                }).format(summary.total)}</strong>
+                <strong>R$ 500,00</strong>
             </div>
         </Container>
     )

@@ -1,4 +1,6 @@
-import { useTransactions } from '../../hooks/useTransactions';
+import { useContext } from 'react';
+
+import { TransactionsContext } from '../../contexts/TransactionsContext';
 
 import { Container } from './styles';
 
@@ -7,7 +9,7 @@ import outcomeImg from '../../assets/outcome.svg';
 import totalImg from '../../assets/total.svg';
 
 export function Summary() {
-    const { transactions } = useTransactions();
+    const { transactions } = useContext(TransactionsContext);
 
     const summary = transactions.reduce((acc, transaction) => {
         if (transaction.type === 'deposit') {
@@ -44,7 +46,7 @@ export function Summary() {
                     <p>Outcome</p>
                     <img src={outcomeImg} alt="Logo outcome" />
                 </header>
-                <strong>-{new Intl.NumberFormat('de-DE', {
+                <strong>{new Intl.NumberFormat('de-DE', {
                     style: 'currency',
                     currency: 'EUR',
                 }).format(summary.withdraws)}</strong>
