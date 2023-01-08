@@ -13,7 +13,7 @@ interface Transaction {
 
 interface TransactionsContextData {
     transactions: Transaction[];
-    createTransaction: (transaction: TransactionInput) => Promise<void>;
+    createTransaction: (transaction: TransactionInput) => void;
 }
 
 export const TransactionsContext = createContext<TransactionsContextData>({} as TransactionsContextData);

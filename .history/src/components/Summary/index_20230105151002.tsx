@@ -11,6 +11,8 @@ import totalImg from '../../assets/total.svg';
 export function Summary() {
     const { transactions } = useContext(TransactionsContext);
 
+    console.log(transactions);
+
     return (
         <Container>
             <div>
